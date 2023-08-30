@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "ceo-s-quest",
+    "slug": "ceo-s-quest",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "db3d015e-5545-4cd8-a092-f862dd6b8b39"
+      }
+    }
+  },
+  "name": "ceo-s-quest"
+}
