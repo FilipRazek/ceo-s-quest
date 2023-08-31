@@ -1,4 +1,4 @@
-package com.quickplot;
+package com.filiprazek.quickplot;
 
 import android.os.Build;
 import android.os.Bundle;
