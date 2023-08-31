@@ -1,35 +1,39 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import RNSystemFileBrowser from "react-native-system-file-browser";
-import { downloadFile } from "react-native-fs";
+import { StyleSheet, Text, Button, StatusBar } from "react-native";
+import DocumentPicker from 'react-native-document-picker';
 
-export default function App() {
-  const csvUrl = "https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv";
-  const openFile = () => {
-    downloadFile({
-      fromUrl: csvUrl,
-      toFile: RNSystemFileBrowser.getDownloadDir() + "/airtravel.csv",
-    });
-    console.log("open file");
+export const App = () => {
+  const [fileResponse, setFileResponse] = useState([]);
 
-    RNSystemFileBrowser.openFileBrower()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
+  const handleDocumentSelection = useCallback(async () => {
+    try {
+      const response = await DocumentPicker.pick({
+        presentationStyle: "fullScreen",
+        type: [DocumentPicker.types.csv],
       });
-  };
+      setFileResponse(response);
+    } catch (err) {
+      console.warn(err);
+    }
+  }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js and start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Button title="Open CSV file" onPress={openFile} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={"dark-content"} />
+      {fileResponse.map((file, index) => (
+        <Text
+          key={index.toString()}
+          style={styles.uri}
+          numberOfLines={1}
+          ellipsizeMode={"middle"}
+        >
+          {file?.uri}
+        </Text>
+      ))}
+      <Button title="Select 📑" onPress={handleDocumentSelection} />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
