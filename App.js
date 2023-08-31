@@ -1,15 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, Button, StatusBar } from "react-native";
-import DocumentPicker from 'react-native-document-picker';
+import { StyleSheet, Text, Button, StatusBar, SafeAreaView } from "react-native";
+import DocumentPicker from "react-native-document-picker";
 
-export const App = () => {
-  const [fileResponse, setFileResponse] = useState([]);
+export default function App() {
+  const [fileResponse, setFileResponse] = React.useState([]);
 
-  const handleDocumentSelection = useCallback(async () => {
+  const handleDocumentSelection = React.useCallback(async () => {
     try {
       const response = await DocumentPicker.pick({
         presentationStyle: "fullScreen",
-        type: [DocumentPicker.types.csv],
+        // type: [DocumentPicker.types.csv],
       });
       setFileResponse(response);
     } catch (err) {
@@ -33,7 +33,7 @@ export const App = () => {
       <Button title="Select 📑" onPress={handleDocumentSelection} />
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
