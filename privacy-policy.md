@@ -14,7 +14,7 @@ The words of which the initial letter is capitalized have meanings defined under
 
 For the purposes of this Privacy Policy:
 
-- __Application__ refers to CEO&#39;s quest, the software program provided by the Company.
+- __Application__ refers to Quick Plot, a mobile application.
 
 - __Device__ means any device that can access the Service such as a computer, a cellphone or a digital tablet.
 

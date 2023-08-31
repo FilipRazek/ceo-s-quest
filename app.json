@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ceo-s-quest",
-    "slug": "ceo-s-quest",
+    "name": "quick-plot",
+    "slug": "quick-plot",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
@@ -10,7 +10,10 @@
       "eas": {
         "projectId": "db3d015e-5545-4cd8-a092-f862dd6b8b39"
       }
+    },
+    "android": {
+      "package": "com.filiprazek.quickplot"
     }
   },
-  "name": "ceo-s-quest"
+  "name": "quick-plot"
 }

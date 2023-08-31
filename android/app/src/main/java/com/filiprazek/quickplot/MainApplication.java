@@ -1,4 +1,4 @@
-package com.ceosquest;
+package com.quickplot;
 
 import android.app.Application;
 import android.content.res.Configuration;
