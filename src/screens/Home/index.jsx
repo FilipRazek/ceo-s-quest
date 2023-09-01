@@ -9,7 +9,7 @@ import {
 import DocumentPicker from "react-native-document-picker";
 import { readFile } from "react-native-fs";
 import { readString } from "react-native-csv";
-import { GraphOptions } from "./src/components/GraphOptions";
+import { GraphOptions } from "../../components/GraphOptions";
 
 
 export const Home = () => {
