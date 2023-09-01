@@ -1,9 +1,11 @@
+import { Text, View } from "react-native";
+
 export const GraphOptions = ({ table }) => {
   return (
-    <div>
-      {table.map((item) => (
-        <p>{JSON.stringify(item)}</p>
+    <View>
+      {table.map((item, index) => (
+        <Text key={index}>{JSON.stringify(item)}</Text>
       ))}
-    </div>
+    </View>
   );
 };
