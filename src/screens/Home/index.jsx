@@ -11,7 +11,6 @@ import { readFile } from "react-native-fs";
 import { readString } from "react-native-csv";
 import { GraphOptions } from "../../components/GraphOptions";
 
-
 export const Home = () => {
   const [fileData, setFileData] = React.useState([]);
   const [csvFile, setCsvFile] = React.useState("No file selected");
@@ -20,7 +19,6 @@ export const Home = () => {
     try {
       const response = await DocumentPicker.pick({
         presentationStyle: "fullScreen",
-        type: [DocumentPicker.types.plainText, DocumentPicker.types.csv],
       });
       const chosenFile = response[0].uri;
       const fileData = await readFile(chosenFile, "utf8");
