@@ -32,9 +32,10 @@ export const FilePicker = ({ updateData }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flex: 5,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "lightblue",
   },
 });
