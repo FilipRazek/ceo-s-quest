@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  Button,
-  StatusBar,
-  SafeAreaView,
-} from "react-native";
-import DocumentPicker from "react-native-document-picker";
-import { readFile } from "react-native-fs";
+import { StyleSheet, StatusBar, SafeAreaView } from "react-native";
 import { readString } from "react-native-csv";
 import { GraphOptions } from "../../components/GraphOptions";
+import { FilePicker } from "../../components/FilePicker";
 
 function extractData(csvString) {
   const convertedData = readString(csvString).data;
@@ -21,31 +14,17 @@ function extractData(csvString) {
 }
 
 export const Home = () => {
-  const [fileData, setFileData] = React.useState([]);
-  const [csvFile, setCsvFile] = React.useState("No file selected");
+  const [tableData, setTableData] = React.useState([]);
 
-  const handleDocumentSelection = async function () {
-    try {
-      const response = await DocumentPicker.pick({
-        presentationStyle: "fullScreen",
-      });
-      const chosenFile = response[0].uri;
-      const fileData = await readFile(chosenFile, "utf8");
-      setFileData(extractData(fileData));
-      setCsvFile(chosenFile.split(/[(%2F)/]/).at(-1));
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        console.log("User cancelled the picker");
-      } else console.warn(err);
-    }
-  };
+  function updateDataFromFile(newFileData) {
+    setTableData(extractData(newFileData));
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"dark-content"} />
-      <Button title="Select file" onPress={handleDocumentSelection} />
-      <Text>{csvFile}</Text>
-      {fileData.length > 0 ? <GraphOptions table={fileData} /> : null}
+      <FilePicker updateData={updateDataFromFile} />
+      {tableData.length > 0 ? <GraphOptions table={tableData} /> : null}
     </SafeAreaView>
   );
 };
