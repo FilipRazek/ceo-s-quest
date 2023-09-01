@@ -11,6 +11,15 @@ import { readFile } from "react-native-fs";
 import { readString } from "react-native-csv";
 import { GraphOptions } from "../../components/GraphOptions";
 
+function extractData(csvString) {
+  const convertedData = readString(csvString).data;
+  const headers = convertedData[0];
+  const cleanedUpData = convertedData.filter(function hasCorrectFormat(row) {
+    return row.length === headers.length;
+  });
+  return cleanedUpData;
+}
+
 export const Home = () => {
   const [fileData, setFileData] = React.useState([]);
   const [csvFile, setCsvFile] = React.useState("No file selected");
@@ -22,9 +31,8 @@ export const Home = () => {
       });
       const chosenFile = response[0].uri;
       const fileData = await readFile(chosenFile, "utf8");
-      const convertedData = readString(fileData);
-      setFileData(convertedData);
-      setCsvFile(chosenFile.split("/").at(-1));
+      setFileData(extractData(fileData));
+      setCsvFile(chosenFile.split(/[(%2F)/]/).at(-1));
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
         console.log("User cancelled the picker");
